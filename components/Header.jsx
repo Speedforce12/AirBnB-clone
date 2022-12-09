@@ -30,7 +30,7 @@ const Header = () => {
 
       {/* right */}
       <div className="space-x-4 flex items-center justify-end text-gray-500">
-        <p className="hidden md:inline cursor-pointer">Become a house</p>
+        <p className="hidden md:inline cursor-pointer">Become a host</p>
               <HiOutlineGlobeAlt size={24} className='cursor-pointer' />
               
               <div className="flex items-center border-2 shadow space-x-2 p-2 rounded-full">
