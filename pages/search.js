@@ -1,8 +1,10 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
+import InfoCard from "../components/InfoCard";
+import Map from "../components/Map";
 
-function Search() {
+function Search({ searchResult }) {
   const router = useRouter();
 
   const { location, startDate, endDate, guests } = router.query;
@@ -28,6 +30,26 @@ function Search() {
             <p className='search-filter'>Rooms & Beds</p>
             <p className='search-filter'>More filters</p>
           </div>
+
+          <div className='flex flex-col'>
+            {searchResult.map(
+              ({ img, location, title, description, star, price, total }) => (
+                <InfoCard
+                  img={img}
+                  location={location}
+                  title={title}
+                  description={description}
+                  star={star}
+                  price={price}
+                  total={total}
+                />
+              )
+            )}
+          </div>
+        </section>
+
+        <section className='hidden xl:inline-flex xl:min-w-[600px]'>
+          <Map searchResult={searchResult} />
         </section>
       </main>
     </div>
@@ -35,3 +57,14 @@ function Search() {
 }
 
 export default Search;
+
+export async function getServerSideProps() {
+  const searchResult = await fetch(
+    "https://api.npoint.io/602f9697c1ed9ff5a57b"
+  ).then((res) => res.json());
+  return {
+    props: {
+      searchResult,
+    },
+  };
+}

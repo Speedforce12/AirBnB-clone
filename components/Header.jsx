@@ -65,8 +65,7 @@ const Header = () => {
           className='pl-5 bg-transparent outline-none flex-grow text-gray-600 text-sm placeholder-gray-400'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder={
-            router.query.location.toUpperCase() || "Start your search here"
+          placeholder={ router.query.location ? router.query.location.toUpperCase() : "Start your search here"
           }
         />
         <BiSearch
